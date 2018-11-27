@@ -146,14 +146,19 @@ def insert_tables_latex(args, tables):
     return lyx_text
 
 def round_entry(entry_tag, entry):
-    round_to = int(entry_tag.replace(',', ''))
-    decimal_place = round(pow(0.1, round_to), round_to)
-    if round_to == 0:
-        decimal_place = str(int(decimal_place))
-    else:
-        decimal_place = str(decimal_place)
-    rounded_entry = str(Decimal(entry).quantize(Decimal(decimal_place), rounding = ROUND_HALF_UP))
-
+	try:
+		sig_indicators = re.search('(\$.+\$)', entry).group(0) # https://stackoverflow.com/questions/1327369/extract-part-of-a-regex-match
+		entry = re.sub('(\$.+\$)', '', entry)
+	except:
+		sig_indicators = ''
+	round_to = int(entry_tag.replace(',', ''))
+	decimal_place = round(pow(0.1, round_to), round_to)
+	if round_to == 0:
+		decimal_place = str(int(decimal_place))
+	else:
+		decimal_place = str(decimal_place)
+	rounded_entry = str(Decimal(entry).quantize(Decimal(decimal_place), rounding = ROUND_HALF_UP)) + sig_indicators
+    
     return rounded_entry
 
 

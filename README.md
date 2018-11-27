@@ -21,11 +21,11 @@ Installation
 
 The preferred installation method is to use [pip](https://pypi.python.org/pypi/pip):
 ```
-pip install git+ssh://git@github.com/gslab-econ/gslab_python.git@master
+pip install git+ssh://git@github.com/lboxell/gslab_python.git@lb_latex_tablefill
 ```
 or
 ```
-pip install git+https://git@github.com/gslab-econ/gslab_python.git@master
+pip install git+https://git@github.com/lboxell/gslab_python.git@lb_latex_tablefill
 ```
 which are the SSH and HTTPS protocol versions.
 
