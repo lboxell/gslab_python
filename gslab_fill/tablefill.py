@@ -134,7 +134,7 @@ def insert_tables_latex(args, tables):
                             if re.match('---', tables[tag][entry_count]):
                                 rounded_entry = '---'
                             else:
-                                rounded_entry = round_entry(entry_tag, tables[tag][entry_count])
+                                rounded_entry = round_entry(entry_tag, tables[tag][entry_count], lyx = False)
                                 if re.match('^.*#\d+,#', lyx_text_i[col]):
                                     rounded_entry = insert_commas(rounded_entry)
                             lyx_text_i[col] = lyx_text_i[col].replace('#' + entry_tag + '#', rounded_entry)
@@ -145,10 +145,12 @@ def insert_tables_latex(args, tables):
                         search_table = False
     return lyx_text
 
-def round_entry(entry_tag, entry):
+def round_entry(entry_tag, entry, lyx = True):
     try:
         sig_indicators = re.search('(\$.+\$)', entry).group(0) # https://stackoverflow.com/questions/1327369/extract-part-of-a-regex-match
         entry = re.sub('(\$.+\$)', '', entry)
+        if lyx:
+            sig_indicators = "\begin_inset Formula %s \n \end_inset" % re.sub('\$', '', sig_indicators)
     except:
         sig_indicators = ''
     round_to = int(entry_tag.replace(',', ''))
