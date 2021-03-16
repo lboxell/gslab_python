@@ -66,7 +66,7 @@ setup(name         = 'GSLab_Tools',
       packages     = find_packages(),
       install_requires = requirements,
       zip_safe     = False,
-      cmdclass     = {'test': TestRepo, 'clean': CleanRepo},
-      setup_requires = ['pytest-runner', 'coverage'],
-      tests_require = ['pytest', 'coverage'])
+      cmdclass     = {'test': TestRepo, 'clean': CleanRepo})#,
+      #setup_requires = ['pytest-runner', 'coverage'])#,
+      #tests_require = ['pytest', 'coverage'])
 
